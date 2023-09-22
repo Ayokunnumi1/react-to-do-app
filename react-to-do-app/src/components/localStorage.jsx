@@ -1,11 +1,13 @@
 export const SaveToLocalStorage = () => {
-    localStorage.setItem('Task Array', JSON.stringify('Task Array'));
+    return (
+       localStorage.setItem('Task Array', JSON.stringify('Task Array'))
+   );
 }
 
 export const GetFromLocalStorage = () => {
-    const getData = localStorage.getItem('Task Array');
+    const getData = localStorage.getItem('');
     if (getData) {
-        return JSON.parse();
+        return JSON.parse(getData);
     }
     return [];
 }

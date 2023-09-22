@@ -1,11 +1,11 @@
 import Header from './Header';
-import InputTodDo from './InputTodo';
+import TodosLogic from './TodosLogic';
 
 const TodoApp = () => {
     return (
     <>
             <Header />
-            <InputTodDo />
+            <TodosLogic />
     </>
     );
 }
