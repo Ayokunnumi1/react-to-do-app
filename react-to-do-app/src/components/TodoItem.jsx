@@ -1,33 +1,42 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import '../modules/TodoItem.css';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const TodoItem = ({ itemProp, setTodos }) => {
+const TodoItem = ({ itemProp, setToDo }) => {
     const handleChange = (id) => {
         console.log(id)
-        setTodos((prevState) => {
-            prevState.map((prev) => {
-                if (prev.id === id) {
+        setToDo((prevState) => 
+            prevState.map((todo) => {
+                if (todo.id === id) {
                     return {
-                        ...prev,
-                        completed: !prev.completed,
+                        ...todo,
+                        completed: !todo.completed,
                     };
                 }
-                return prev;
+                return todo;
             })
-        })
+        )
     }
+    const deleteButton = (id) => {
+        setToDo((prevState) =>  
+     prevState.filter((todo) => {
+      return todo.id !== id;
+    }),)
+};
     return (
         <div className="list-checkbox-container">
             <input type="checkbox" className="list-checkbox"
-                // eslint-disable-next-line react/prop-types
-                checked={itemProp.completed}
-                // eslint-disable-next-line react/prop-types
                 onChange={() => handleChange(itemProp.id)}
+                checked={itemProp.completed}
             />
-        // eslint-disable-next-line react/prop-types, react/prop-types
-        <li>{ itemProp.title}</li>
+            <li>{itemProp.title}</li>
+            <button onClick={() => deleteButton(itemProp.id)} >Delete</button>
         </div>
     );
+}
+
+TodoItem.propTypes = {
+    itemProp: PropTypes.object.isRequired,
+    setToDo: PropTypes.func.isRequired,
+    // deleteButton: PropTypes.func.isRequired
 }
 export default TodoItem;

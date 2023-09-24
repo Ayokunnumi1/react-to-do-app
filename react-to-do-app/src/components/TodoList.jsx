@@ -1,17 +1,18 @@
 import TodoItem from './TodoItem';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const TodoList = ({ todosProps, setTodos }) => {
-   
-    return (                                                                            
-        <ul>
-        {
-            // eslint-disable-next-line react/prop-types
-            todosProps.map((todo) => (
-               <TodoItem key={todo.id}  itemProp={todo} setTodos={setTodos} />
-            ))
-        }
+const TodosList = ({ todo, setToDo }) => {
+  return (
+    <ul>
+      {todo.map((tod) => (
+        <TodoItem key={tod.id} itemProp={tod} setToDo={setToDo} />
+      ))}
     </ul>
-    );
-}
-export default TodoList
+  );
+};
+
+TodosList.propTypes = {
+    todo: PropTypes.array.isRequired,
+    setToDo: PropTypes.func.isRequired,
+   }
+export default TodosList;
